@@ -24,5 +24,5 @@
 * After successfully installing the conda we need to install its packages < make, reticulator, r, etc>. 
 * then we use the command 
               ` make clean all ` 
-  **  this will output a html file of current directory where we are  
+* this will output a html file of current directory where we are  
 * Now we have conda installed. 
