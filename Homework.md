@@ -5,7 +5,7 @@
 * first we need to visit the vscode website
 * Go to download page and download .deb package
   * We open a new terminal then type  
-        # sudo apt install file_name.deb
+        > sudo apt install file_name.deb
 * We used the "sudo" for the privileges 
 * Now we have vscode installed. 
 >
