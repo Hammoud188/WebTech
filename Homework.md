@@ -1,28 +1,90 @@
-# This the first Homework
+How to convert R Markdown to PDF using Make
+================================================
+Author: Hammoud Khalaf
 
-#### This section shows how can we install vscode in steps. 
+#  First step: How to Install Miniconda  ?
+1. download installer : click [here](https://docs.conda.io/en/latest/miniconda.html)
+2. run it by using these commands : 
+```{bash}
+$ chmod u+x <your-installer>
+$ ./<your_installer>
+```
+now the following command to check it :
+```
+$ conda --version
+```
+We shall add a repository as all packages are not in the default repository, so first you need to add a repository called "[conda-forge](https://conda-forge.org/feedstocks/)"
+```
+$ conda config --add channels conda-forge
+```
 
-* first we need to visit the vscode website
-* Go to download page and download .deb package
-  * We open a new terminal then type  
-          `sudo apt install file_name.deb`
-* We used the "sudo" for the privileges 
-* Now we have vscode installed. 
->
->
-> 
+# Second step: Install other required packages
+1. You will need [R](https://www.r-project.org/) and [Python](https://www.python.org) packages to compile programs in your Rmd file. Additionally, the following packages is required for the example Rmd to be used in this instruction.
 
+- R packages
+    * r
+    * r-ggplot2
+    * r-hrbrthemes
+    * r-rmarkdown
+    * r-reticulate
+- Python packages
+    * python
+    * wordcloud
+    * urllib3
+    * matplotlib
 
-#### This section shows how can we install conda in steps. 
+Let's install them.
 
-* first we need to visit the anconda website
-* Go to download page and download the package
-  * We open a new terminal then type the command    
-    ` bash file_name.sh `
-  * it will print code dm5 encryption and the name of the file
-  * It will show us the agreement and terms we need to accept that and say YES it will direct us to the conda
-* After successfully installing the conda we need to install its packages < make, reticulator, r, etc>. 
-* then we use the command    
-    ` make clean all ` 
-* this will output a html file of current directory where we are  
-* Now we have conda installed. 
+```{bash}
+$ conda install r r-ggplot2 r-hrbrthemes r-rmarkdown r-reticulate python wordcloud urllib3 matplotlib
+```
+
+also install [TinyTex](https://yihui.name/tinytex/)
+```{bash}
+$ conda install r-tinytex
+$ R
+> tinytex::install_tinytex()
+```
+
+2. install [HTTPie](https://httpie.org)
+```{bash}
+$ conda install httpie
+```
+
+3. install [Make](https://www.gnu.org/software/make/)
+```{bash}
+$ conda install make
+```
+
+4. install [Pandoc](https://pandoc.org/)
+```{bash}
+$ conda install pandoc
+```
+
+# Third step: Let's try it  now!
+Get example files here https://github.com/jeszy75/markdown-examples/tree/master/rmarkdown
+
+If you want to convert to pdf instead of html, do the following modifications.
+
+- `Makefile`
+
+    replace all the word 'html' with 'pdf'.
+
+- `rmarkdown-example.Rmd`
+
+    - remove line 8:
+        ```
+        toc_float: true
+        ```
+    - remove line 31:
+        ```
+        ggplot(data = diamonds, aes(x = price, group = cut, fill = cut)) + geom_density(adjust = 1.5, position = "fill") + theme_ipsum_ps()
+        ```
+Convert "rmarkdown-example.Rmd"
+```
+$ make
+```
+To remove previouse output before converting, use:
+```
+$ make clean all
+```
